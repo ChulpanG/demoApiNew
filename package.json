@@ -1,0 +1,36 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "type": "module",
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "css-loader": "^3.3.2",
+    "style-loader": "^1.0.1",
+    "vue-router": "^3.1.3",
+    "vue-style-loader": "^4.1.2",
+    "vuelidate": "^0.7.4",
+    "vuetify": "^2.1.14"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
+    "@mdi/js": "^4.7.95",
+    "babel-loader": "^8.0.6",
+    "vue": "^2.6.11",
+    "vue-cli": "^2.9.6",
+    "vue-loader": "^15.8.3",
+    "vue-resource": "^1.5.1",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.1.2",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
