@@ -68,10 +68,11 @@ export default new Vuex.Store({
             commit('updateOrderMutation', data)
         },
         async removeOrderAction({commit}, order) {
-            const result = await orderApi.delete(order.orderID)
-            if (result.ok && result.data === true) {
+            const result = await orderApi.delete(order)
+            commit('removeOrderMutation', order)
+            /*if (result.ok && result.data === true) {
                 commit('removeOrderMutation', order)
-            }
+            }*/
         },
         async getOrderById({commit}, id) {
             const result = await orderApi.getById(id)

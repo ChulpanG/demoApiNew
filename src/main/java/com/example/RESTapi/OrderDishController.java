@@ -69,7 +69,7 @@ public class OrderDishController {
         return ResponseEntity.ok(updatedOrderDish);
     }
 
-    @DeleteMapping("{orderid}")
+    @DeleteMapping("{orderID}")
     public Map<String, Boolean> deleteOrderDish(@PathVariable(value = "orderID") int orderID)
             throws ResourceNotFoundException {
         OrderDish orderDish = orderDishRepository.findById(orderID)

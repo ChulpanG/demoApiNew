@@ -39,7 +39,7 @@
                 <v-btn
                         text
                         color="deep-purple accent-4"
-                        @click="del"
+                        @click="del(order)"
                 >
                     Удалить
                 </v-btn>
@@ -55,7 +55,7 @@
     import {mapActions, mapState} from 'vuex'
     export default {
         name: "OrdersList",
-        props: ['orders'],
+
         components: {
             OrderCard,
         },
@@ -66,10 +66,10 @@
             editOrder(order) {
                 this.$router.push({path: '/addNew', query: {orderID: order.orderID}})
             },
-            del() {
-                alert(JSON.stringify(this.order))
-                this.removeOrderAction(this.order);
-            }
+            del(order) {
+            alert(JSON.stringify(order.orderID))
+            this.removeOrderAction(order);
+}
 
         },
         created(){

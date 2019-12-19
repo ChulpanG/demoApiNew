@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <orders-list :orders="orders" />
+        <orders-list />
     </v-container>
 </template>
 
