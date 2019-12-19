@@ -1,5 +1,7 @@
 package com.example.model;
 
+import org.hibernate.criterion.Order;
+
 import javax.persistence.*;
 import java.io.Serializable;
 /*
@@ -8,12 +10,23 @@ import java.io.Serializable;
 нужно доделать
  */
 @Entity
+@IdClass(value=OrderDish.OrderDishId.class)
 @Table(name = "order_dish")
-//@IdClass(value=OrderDish.OrderDishId.class)
 public class OrderDish implements Serializable {
-    //private int orderID;
-    //private int dishID;
+    private int orderID;
+    private int dishID;
 
+
+    public OrderDish(int orderID, int dishID){
+        this.orderID = orderID;
+        this.dishID = dishID;
+
+    }
+
+    public OrderDish() {
+
+    }
+/*
     @EmbeddedId
     OrderDishPK orderdishpk = new OrderDishPK();
 
@@ -29,7 +42,7 @@ public class OrderDish implements Serializable {
 
     public OrderDish(){}
 
-    /*@Id
+    *//*@Id
     @Column(name = "orderid")
     public int getOrderID() {
         return orderID;
@@ -47,7 +60,7 @@ public class OrderDish implements Serializable {
     public void setDishID(int dishID) {
         this.dishID = dishID;
     }
-    */
+    *//*
 
         @ManyToOne
         @MapsId("orderid")
@@ -81,9 +94,9 @@ public class OrderDish implements Serializable {
 
         public void setQuantity(int quantity) {
             this.quantity = quantity;
-        }
+        }*/
 
-      /*@Id
+        @Id
         @Column(name = "orderid")
         public int getOrderID() {
             return orderID;
@@ -93,6 +106,7 @@ public class OrderDish implements Serializable {
             this.orderID = orderID;
         }
 
+        @Id
         @Column(name = "dishid")
         public int getDishID() {
             return dishID;
@@ -101,20 +115,9 @@ public class OrderDish implements Serializable {
         public void setDishID(int dishID) {
             this.dishID = dishID;
         }
-        @Column(name = "quantity")
-        public int getQuantity() {
-            return quantity;
-        }
 
-        public void setQuantity(int quantity) {
-            this.quantity = quantity;
-        }
 
-        @Override
-        public String toString() {
-            return "OrderDish [id=" + orderID + ", dish id=" + dishID + ", quantity" + quantity + "]";
-        }*/
-/*static class OrderDishId implements Serializable {
+static class OrderDishId implements Serializable {
     private int orderID;
     private int dishID;
 
@@ -122,7 +125,7 @@ public class OrderDish implements Serializable {
         return orderID;
     }
 
-    public void setOrderID(int productID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
@@ -133,5 +136,5 @@ public class OrderDish implements Serializable {
     public void setDishID(int dishID) {
         this.dishID = dishID;
     }
-}*/
+}
 }

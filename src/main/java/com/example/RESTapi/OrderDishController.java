@@ -39,20 +39,15 @@ public class OrderDishController {
     }
 
     //(@RequestParam(value = "orderID") int orderID, @RequestParam(value = "dishID") int dishID)
+    @PostMapping("{orderID}")
+    public ResponseEntity<OrderDish> createOrderDish(@PathVariable(value = "orderID") int orderID,
+                                                         @Valid @RequestBody OrderDish orderDishDetails){
+        OrderDish orderdish = new OrderDish();
+        orderdish.setOrderID(orderID);
+        orderdish.setDishID(orderDishDetails.getDishID());
 
-    @PostMapping()
-    public OrderDish createOrderDish(@RequestParam(value = "orderID") int orderID, @Valid @RequestBody OrderDish orderDishDetails) throws ResourceNotFoundException {
-
-        /*OrderDishPK orderDishPK = new OrderDishPK();
-        orderDishPK.setOrderid(orderID);
-
-        OrderDish orderDish = orderDishRepository.findById(orderDishPK.getOrderid())
-                .orElseThrow(() -> new ResourceNotFoundException("Person not found for this id :: " + orderID));
-
-
-        */
-        OrderDish orderDish = new OrderDish();
-        return orderDishRepository.save(orderDish);
+        final OrderDish updatedProduct = orderDishRepository.save(orderdish);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @PutMapping()

@@ -1,24 +1,24 @@
 <template>
     <v-container>
-        <dishs-list :dishes="dishes" />
+        <orders-list :orders="orders" />
     </v-container>
 </template>
 
 <script>
     import { mapState } from 'vuex'
     import { mapActions } from 'vuex'
-    import DishsList from "components/dishes/DishList.vue"
+    import OrdersList from "components/orders/OrderList.vue"
     export default {
-        name: "DishsPage",
+        name: "OrdersPage",
         components: {
-            DishsList,
+            OrdersList,
         },
-        computed: mapState(['dishs']),
+        computed: mapState(['orders']),
         methods: {
-            ...mapActions(['getDishById']),
+            ...mapActions(['getOrderById']),
         },
         created() {
-            this.getDishById(this.$route.query.id)
+            this.getOrderById(this.$route.query.id)
         }
     }
 </script>

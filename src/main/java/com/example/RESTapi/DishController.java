@@ -16,7 +16,7 @@ import java.util.Map;
 пофиксила 7.10, вылетает бд при изменени значений в product_dish
  */
 @RestController
-@RequestMapping(path = "dish")
+@RequestMapping(path = "/dish")
 public class DishController {
     @Autowired
     private DishRepository dishRepository;

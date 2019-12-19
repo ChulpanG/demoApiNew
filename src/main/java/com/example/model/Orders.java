@@ -18,11 +18,13 @@ public class Orders implements Serializable {
     private int personID;
     private Timestamp time;
     private Set<Dish> dish;
+    private int dishID;
     //private Set<OrderDish> orderDish = new HashSet<OrderDish>();
-    public Orders(int orderID,int personID,Timestamp time){
+    public Orders(int orderID,int personID,Timestamp time,int dishID){
         this.orderID=orderID;
         this.personID=personID;
         this.time=time;
+        this.dishID = dishID;
     }
 
 
@@ -73,7 +75,6 @@ public class Orders implements Serializable {
     @Access(AccessType.PROPERTY)
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "personid", insertable = false, updatable = false)
-    @JsonIgnore
     public Person getPerson() {
         return person;
     }

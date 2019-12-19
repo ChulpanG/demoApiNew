@@ -10,15 +10,15 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long personID;
     private String surname;
-    private String personname;
+    private String name;
     private String position;
     private String birthdate;
     private String gender;
     private int personalcode;
 
-    public Person(String surname, String personname, String position, String birthdate, String gender, int personalcode) {
+    public Person(String surname, String name, String position, String birthdate, String gender, int personalcode) {
         this.surname = surname;
-        this.personname = personname;
+        this.name = name;
         this.position = position;
         this.birthdate = birthdate;
         this.gender = gender;
@@ -43,17 +43,17 @@ public class Person {
     }
     @Column(name = "name", nullable = false)
     public String getName(){
-        return personname;
+        return name;
     }
     public void setName(String personname){
-        this.personname=personname;
+        this.name = name;
     }
     @Column(name = "position", nullable = false)
     public String getPosition(){
         return position;
     }
     public void setPosition(String position){
-        this.position=position;
+        this.position = position;
     }
     @Column(name = "birthdate", nullable = false)
     public String getBirthdate() {
@@ -82,7 +82,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person [id=" + personID + ", personname=" + personname + ", surname=" + surname + ", position=" + position
+        return "Person [id=" + personID + ", personname=" + name + ", surname=" + surname + ", position=" + position
                 + "]";
     }
 }

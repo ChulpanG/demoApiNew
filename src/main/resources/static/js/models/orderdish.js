@@ -1,11 +1,11 @@
    import Vue from 'vue'
    
-   const orderDish = Vue.resource('/orderDish{/orderid}')
+   const orderDishes = Vue.resource('/orderDish{/orderid}')
    
    export default {
-       save: orderDish => orderDishes.save({}, orderDish),
+       add: orderDish => orderDishes.save({}, orderDish),
        update: orderDish => orderDishes.update({dishid: orderDish.dishid}, orderDish),
        getById: id => orderDishes.get({dishid}),
-       get: data => orderDishes.get(),
+       get: () => orderDishes.get(),
        delete: orderDish => orderDishes.delete({dishid: orderDish.dishid}, orderDish)
    }

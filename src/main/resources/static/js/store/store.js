@@ -1,79 +1,108 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import productApi from "models/product"
-
+import orderApi from "models/order"
+import dishApi from "models/dish"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        product: '',
-        productList: [],
+        order: '',
+        orderList: [],
+        dish:'',
+        dishList:[]
     },
     mutations: {
-        addProductMutation(state, product) {
-            state.productList = [
-                ...state.productList,
-                product
+        addOrderMutation(state, order) {
+            state.orderList = [
+                ...state.orderList,
+                order
             ]
         },
-        updateProductMutation(state, product) {
-            const updateIndex = state.productList.findIndex(item => item.id === product.productid)
+        addDishMutation(state, dish) {
+                    state.dishList = [
+                        ...state.dishList,
+                        dish
+                    ]
+                },
+        updateOrderMutation(state, order) {
+            const updateIndex = state.orderList.findIndex(item => item.id === order.orderid)
 
-            state.productList = [
-                ...state.productList.slice(0, updateIndex),
-                product,
-                ...state.productList.slice(updateIndex + 1)
+            state.orderList = [
+                ...state.orderList.slice(0, updateIndex),
+                order,
+                ...state.orderList.slice(updateIndex + 1)
             ]
         },
-        removeProductMutation(state, product) {
-            const deletionIndex = state.productList.findIndex(item => item.id === product.productid)
+        removeOrderMutation(state, order) {
+            const deletionIndex = state.orderList.findIndex(item => item.id === order.orderid)
 
             if (deletionIndex > -1) {
-                state.productList = [
-                    ...state.productList.slice(0, deletionIndex),
-                    ...state.productList.slice(deletionIndex + 1)
+                state.orderList = [
+                    ...state.orderList.slice(0, deletionIndex),
+                    ...state.orderList.slice(deletionIndex + 1)
                 ]
             }
         },
-        removeAllProductsMutation(state) {
-            state.productList = []
+        removeAllOrdersMutation(state) {
+            state.orderList = []
         },
-        redactProductMutation(state, product) {
-            state.product = product
-        }
+        removeAllDishesMutation(state) {
+                    state.dishList = []
+                },
+        redactOrderMutation(state, order) {
+            state.order = order
+        },
+        redactDishMutation(state, dish) {
+                    state.dish = dish
+                }
     },
     actions: {
-        async addProductAction({commit}, product) {
-            const result = await productApi.add(product)
+        async addOrderAction({commit}, order) {
+            const result = await orderApi.add(order)
             const data = await result.json()
-            commit('addProductMutation', data)
+            commit('addOrderMutation', data)
         },
-        async updateProductAction({commit}, product) {
-            const result = await productListApi.update(product)
+        async updateOrderAction({commit}, order) {
+            const result = await orderListApi.update(order)
             const data = await result.json()
-            commit('updateProductMutation', data)
+            commit('updateOrderMutation', data)
         },
-        async removeProductAction({commit}, product) {
-            const result = await productListApi.remove(product.productid)
+        async removeOrderAction({commit}, order) {
+            const result = await orderApi.delete(order.orderID)
             if (result.ok && result.data === true) {
-                commit('removeProductMutation', product)
+                commit('removeOrderMutation', order)
             }
         },
-
-        async getProductById({commit}, id) {
-            const result = await productApi.getById(id)
+        async getOrderById({commit}, id) {
+            const result = await orderApi.getById(id)
             const data = await result.json()
 
-            commit('redactProductMutation', data)
+            commit('redactOrderMutation', data)
+        },
+        async getDishById({commit}, id) {
+                    const result = await dishApi.getById(id)
+                    const data = await result.json()
+
+                    commit('redactDishMutation', data)
+                },
+
+        async getAllOrder({commit}){
+            const result = await orderApi.get()
+            const data = await result.json()
+
+            commit('removeAllOrdersMutation', data)
+            data.forEach(order => commit('addOrderMutation',order))
         },
 
-        async getAllProduct({commit}){
-            const result = await productApi.get()
-            const data = await result.json()
+        async getAllDish({commit}){
+                    const result = await dishApi.get()
+                    const data = await result.json()
 
-            commit('removeAllProductsMutation', data)
-            data.forEach(product => commit('addProductMutation',product))
-        }
+                    commit('removeAllDishesMutation', data)
+                    data.forEach(dish => commit('addDishMutation',dish))
+        },
+
+
 
     }
 })

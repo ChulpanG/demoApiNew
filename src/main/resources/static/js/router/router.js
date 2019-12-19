@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ProductsList from "pages/ProductPage.vue"
-import NewProductPage from "pages/NewProductPage.vue";
+import OrdersList from "pages/OrderPage.vue"
+import NewOrderPage from "pages/NewOrderPage.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
 
-    {path: '/showList', component: ProductsList},
+    {path: '/showList', component: OrdersList},
 
-    {path: '/addNew', component: NewProductPage}
+    {path: '/addNew', component: NewOrderPage}
 
 ]
 
